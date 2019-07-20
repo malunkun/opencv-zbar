@@ -1,14 +1,8 @@
-CXX          = g++
-CFLAGS    = -Wall 
-LDFLAGS  = `pkg-config --cflags --libs opencv zbar`
-SRCS = $(wildcard *.cpp)
-TARGETS = $(patsubst %.cpp, %, $(SRCS))
-
-all:$(TARGETS)
-$(TARGETS):$(SRCS)
-	$(CXX) -o $@ $< $(LDFLAGS) $(CFLAGS)
-
+cppflag = `pkg-config --cflags --libs opencv zbar`
+all:
+	g++ -c decoder.cpp -o decoder.o $(cppflag) -Wall
+	gcc -c testmain.c   -o testmain.o -Wall
+	
+	gcc decoder.o testmain.o -o APP $(cppflag) -lstdc++
 clean:
-	rm *.o
-
-.PHONY: clean all
+	rm *.o APP
