@@ -14,7 +14,7 @@ int decoder(int carame_num,struct code_msg* code_msg)
 {
 	Mat image;
 	VideoCapture capture(carame_num);
-	int flag = 0; 
+	int flag = 0;
 
 	if(!capture.isOpened())
 	{
@@ -29,13 +29,15 @@ int decoder(int carame_num,struct code_msg* code_msg)
 		if(!image.empty())
 		{
 		//	cout << "读取到摄像头视频帧"<<endl;
-		
+
 
 #if 0 //置1打开图形窗口进行对焦等操作
 			imshow("source",image);
+			if(waitKey(10) == 0x0d)
+                break;
 #endif
 			cvtColor(image,image,CV_RGB2GRAY);//灰度图
-		//	imshow("imageGray",image);
+			imshow("imageGray",image);
 		//	cout << "灰度图转换成功"<<endl;
 
 			//zbar解码
@@ -56,8 +58,7 @@ int decoder(int carame_num,struct code_msg* code_msg)
 			}
 
 		}
-		//if(waitKey(10) == 0x0d)
-		//	break;
+
 	}
 	return 0;
 }

@@ -3,7 +3,7 @@
 
 struct code_msg{
 	char get_type_name[10];
-	char get_data[20];
+	char get_data[200];
 };
 
 #ifdef __cplusplus
