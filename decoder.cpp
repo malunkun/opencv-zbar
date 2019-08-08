@@ -31,14 +31,13 @@ int decoder(int carame_num,struct code_msg* code_msg)
 		//	cout << "读取到摄像头视频帧"<<endl;
 
 
-#if 0 //置1打开图形窗口进行对焦等操作
+#if 1 //置1打开图形窗口进行对焦等操作
 			imshow("source",image);
 			if(waitKey(10) == 0x0d)
                 break;
 #endif
 			cvtColor(image,image,CV_RGB2GRAY);//灰度图
-			imshow("imageGray",image);
-		//	cout << "灰度图转换成功"<<endl;
+			//double thresh = threshold(image,image,100,255,THRESH_OTSU);//自适应二值化
 
 			//zbar解码
 			int width = image.cols;
