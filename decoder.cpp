@@ -59,6 +59,7 @@ int decoder(int carame_num,struct code_msg* code_msg)
 		}
 
 	}
+	capture.release();
 	return 0;
 }
 
